@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数接收参数并弹出</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	</style>
+</head>
+<body>
+<p><input type="text" value="李宝昌"></p>
+<p><input type="text" value="hahaha"></p>
+<p><button>传参</button></p>
+<script>
+	window.onload = function(){
+		var myFn = function(a,b){
+			var str = a.value + b.value;
+			alert(str);
+
+		}
+		var oInp = document.getElementsByTagName('input');
+		var oBtn = document.getElementsByTagName('button')[0];
+		oBtn.onclick = function(){
+			myFn(oInp[0],oInp[1])
+		}
+	}
+</script>
+</body>
+</html>
