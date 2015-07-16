@@ -54,6 +54,13 @@
 			<p><input type="checkbox" name="item"><label for="">选项0</label></input></p>
 		</dd>
 	</dl>
+	<div id="box">
+		<input type="text">
+		<strong>+</strong>
+		<input type="text">
+		<button>=</button>
+		<span></span>
+	</div>
 	<script>
 	window.onload = function(){
 		var oA = document.getElementsByTagName('a')[0];
@@ -86,6 +93,18 @@
 				isCheckAll();
 			}
 		};
+
+		var num = document.getElementById('box').getElementsByTagName('input');
+		var add = document.getElementById('box').getElementsByTagName('span')[0];
+		var btn = document.getElementById('box').getElementsByTagName('button')[0];
+		// for (var i = 0; i < num.length-1; i++) {
+		// 	num[i].onkeyup = function{
+		// 		this.value = this.value.replace(/[^\d]/,"")
+		// 	}
+		// };
+		btn.onclick = function(){
+			add.innerHTML = parseInt(num[0].value)+parseInt(num[1].value);
+		}
 	}
 	</script>
 </body>
