@@ -2,9 +2,58 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>vue练习</title>
+    <script src="js/vue.js"></script>
+    <style>
+        body {
+            font-family: Helvetica Neue, Arial, sans-serif;
+        }
+
+        li.done {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
+<div id="demo">
+    <!--过滤器-->
+    <h1>{{title | uppercase}}</h1>
+    <ul>
+        <!--指令-->
+        <li
+                v-repeat="todos"
+                v-on="click: done = !done"
+                class="{{done ? 'done' : ''}}"
+                >
+            {{content}}
+        </li>
+    </ul>
+    <ul id="demo1">
+        <li
+                v-repeat="items"
+                class="item-{{$index}}">
+            {{$index}}-{{parentMsg}}{{childMsg}}
+        </li>
+    </ul>
+</div>
 
+<script>
+    var demo = new Vue({
+        el: '#demo',               //视图
+        data: {                    //模型
+            title: 'todos',
+            todos: [
+                {
+                    done: true,
+                    content: 'Learn JavaScript'
+                },
+                {
+                    done: false,
+                    content: 'Learn vue.js'
+                }
+            ]
+        }
+    })
+</script>
 </body>
 </html>
