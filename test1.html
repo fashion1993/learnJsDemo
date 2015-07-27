@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>控制div属性</title>
+	<title>控制div属性and弹出层</title>
 	<style>
 	#outer{
 		width: 500px;
@@ -16,6 +16,42 @@
 		background: #000;
 		margin: 10px auto;
 	}
+	#overlay{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background:#000;
+		opacity:0.5;
+		filter:alpha(opacity=50);
+		display:none;
+	}
+	#win{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 400px;
+		height: 200px;
+		background: #fff;
+		border: 4px solid #f90;
+		margin: -102px 0 0 -202px;
+		display: none;
+	}
+	h2{
+		font-size: 12px;
+		text-align: right;
+		background: #fc0;
+		border-bottom: 3px solid #f90;
+		padding: 5px;
+	}
+	h2 span{
+		color:#f90;
+		cursor:pointer;
+		background:#fff;
+		border:1px solid #f90;
+		padding:0 2px;
+	}
 	</style>
 </head>
 <body>
@@ -27,6 +63,9 @@
 		<input type="button" value="重置">
 		<div id="div1"></div>
 	</div>
+	<div id="overlay"></div>
+	<div id="win"><h2><span id="close">x</span></h2></div>
+	<input type="button" value="弹出层" id="btn"/>
 	<script>
 	window.onload = function(){
 		var changeStyle = function(elem,attr,value){
@@ -38,11 +77,24 @@
 		var oVal = ["200px","200px","#fefefe","none","block"];
 		for(var i=0;i<oBtn.length;i++)
 		{
-			oBtn[i].index = i;  
+			oBtn[i].index = i;
 			oBtn[i].onclick = function(){
 				this.index == oBtn.length - 1 && (oDiv.style.cssText = "");
 				changeStyle(oDiv,oAtt[this.index],oVal[this.index])
 			}
+		}
+		var btn = document.getElementById("btn");
+		var close = document.getElementById("close");
+		var overlay = document.getElementById("overlay");
+		var win = document.getElementById("win");
+
+		btn.onclick = function(){
+			overlay.style.display = "block";
+			win.style.display = "block";
+		}
+		close.onclick = function(){
+			overlay.style.display = "none";
+			win.style.display = "none";
 		}
 	}
 	</script>
