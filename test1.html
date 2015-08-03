@@ -52,6 +52,23 @@
 		border:1px solid #f90;
 		padding:0 2px;
 	}
+	#box{
+		margin: 0 auto;
+		width: 400px;
+		height: 200px;
+		background: #cdcdcd;
+	}
+		#box div{
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			float: left;
+		}
+		#box div.first{
+			width: 200px;
+			height: 100px;
+			position: relative;
+		}
 	</style>
 </head>
 <body>
@@ -66,6 +83,15 @@
 	<div id="overlay"></div>
 	<div id="win"><h2><span id="close">x</span></h2></div>
 	<input type="button" value="弹出层" id="btn"/>
+	<div id="box">
+		<div class="first" style="background: red"></div>
+		<div style="background: orangered"></div>
+		<div style="background: blue"></div>
+		<div style="background: black"></div>
+		<div style="background: greenyellow"></div>
+		<div style="background: cadetblue"></div>
+		<div style="background: yellowgreen"></div>
+	</div>
 	<script>
 	window.onload = function(){
 		var changeStyle = function(elem,attr,value){
@@ -95,6 +121,12 @@
 		close.onclick = function(){
 			overlay.style.display = "none";
 			win.style.display = "none";
+		}
+		var aDiv = document.getElementById("box").getElementsByTagName("div");
+		for(var i=0;i<aDiv.length;i++){
+			aDiv[i].onmouseover = function(){
+				aDiv[0].style.background = this.style.background;
+			}
 		}
 	}
 	</script>
