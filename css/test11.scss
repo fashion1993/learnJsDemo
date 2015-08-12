@@ -1,0 +1,59 @@
+*{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+@mixin wh{
+  width: 600px;
+  height: 300px;
+}
+body{
+  background: #000;
+}
+.wp{
+  .content{
+    @include wh;
+    margin: 0 auto;
+    position: relative;
+    border: 3px solid #ffffff;
+    .list{
+      @include wh;
+      overflow: hidden;
+      position: relative;
+      ul{
+        width: 600px;
+        height: auto;
+        position: absolute;
+        top: 0;
+        li{
+          @include wh;
+          img{
+            @include wh;
+          }
+        }
+      }
+    }
+  }
+  .count{
+    position: absolute;
+    bottom: 0px;
+    right: -5px;
+    ul{
+      list-style: none;
+      li{
+        text-align: center;
+        float: left;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        cursor: pointer;
+        background: {
+          color: red;
+        };
+      }
+      li.cur{
+          background: blue;
+      }
+    }
+  }
+}

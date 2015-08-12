@@ -2,9 +2,64 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>上下自动轮播</title>
+    <link rel="stylesheet" href="css/test11.css"/>
 </head>
 <body>
-
+<div class="wp">
+    <div class="content">
+        <div class="list">
+            <ul>
+                <li><img src="img/img1.jpg" alt=""/></li>
+                <li><img src="img/img2.jpg" alt=""/></li>
+                <li><img src="img/img3.jpg" alt=""/></li>
+                <li><img src="img/img4.jpg" alt=""/></li>
+            </ul>
+        </div>
+        <div class="count">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.9.1.js"></script>
+<script>
+    $(function(){
+        var $listUl = $('.list ul');
+        var $listLi = $('.list li')
+        var _stop = false;
+        var $countLi = $('.count li');
+        var j = $countLi.length;
+        var timer;
+        $('.count li').click(function(){
+            var $this = $(this);
+            var x =  $listLi.height();
+            $this.addClass('cur').siblings().removeClass('cur');
+            clearTimeout(timer);
+            $listUl.stop().animate({
+                top:x * $this.index() * -1
+            },400,function(){
+                if(!_stop)
+                timer = setTimeout(changeAuto,1000);
+            });
+            return false;
+        }).eq(0).click().end();
+        $('.content').hover(function(){
+            _stop = true;
+            clearTimeout(timer);
+        },function(){
+            _stop = false;
+            timer = setTimeout(changeAuto,1000);
+        });
+        function changeAuto(){
+            var n = $('.cur').index();
+            $countLi.eq((n+1) % j).click();
+        }
+    })
+</script>
 </body>
 </html>
