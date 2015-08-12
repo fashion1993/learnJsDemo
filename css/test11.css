@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; }
+
+body {
+  background: #000; }
+
+.wp .content {
+  width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+  border: 3px solid #ffffff; }
+  .wp .content .list {
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+    position: relative; }
+    .wp .content .list ul {
+      width: 600px;
+      height: auto;
+      position: absolute;
+      top: 0; }
+      .wp .content .list ul li {
+        width: 600px;
+        height: 300px; }
+        .wp .content .list ul li img {
+          width: 600px;
+          height: 300px; }
+.wp .count {
+  position: absolute;
+  bottom: 0px;
+  right: -5px; }
+  .wp .count ul {
+    list-style: none; }
+    .wp .count ul li {
+      text-align: center;
+      float: left;
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      cursor: pointer;
+      background-color: red; }
+    .wp .count ul li.cur {
+      background: blue; }
+
+/*# sourceMappingURL=test11.css.map */
