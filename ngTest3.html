@@ -10,31 +10,30 @@
 	}
 	</style>
 </head>
-<body ng-controller="myController">
-  <input type="button" value = {{title}} ng-class = '{error:isError}' ng-click="toggle()">
+<body ng-controller = "myController">
+	<hello></hello>
 </body>
 
 <script>
 	var myApp=angular.module('myApp',[])
-	myApp.directive('input',function(){
+	myApp.directive('hello',function(){
 	return{
+		restrict : 'EA',
+        replace : true,
 		scrope:{
-			isError:"= "
+			isError:" ="
 		},
+		template: '<input type="button" value="{{title}}" ng-class="{error:isError}" ng-click="toggle()">',
 		link:function(scope, element, attrs){
 			scope.isError = false;
 			scope.toggle = function(){
-				if(!scope.isError){
+				if(scope.isError = !scope.isError){
 					scope.isError = true;
-				}
-				else{
-					scope.isError = false;
 				}
 			}
 		}
 	}
-})
-	myApp.controller('myController',function($scope){
+}).controller('myController',function($scope){
 		$scope.title = '点击这里';
 	})
 // myApp.controller('HeaderController',function($scope){

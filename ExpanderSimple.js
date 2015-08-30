@@ -41,7 +41,7 @@ expanderModule.directive('expander', function() {
         replace : true,
         transclude : true,
         scope : {
-            title : '=expanderTitle'
+            title : '='
         },
         template : '<div>'
                  + '<div class="title" ng-click="toggle()">{{title}}</div>'
