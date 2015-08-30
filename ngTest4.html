@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="expanderModule">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+	<style>
+	.expander {
+    	border: 1px solid black;
+    	width: 250px;
+	}
+	.expander>.title {
+    	background-color: black;
+    	color: white;
+    	padding: .1em .3em;
+    	cursor: pointer;
+	}
+	.expander>.body {
+    	padding: .1em .3em;
+	}
+	</style>
+</head>
+<body>
+	<div ng-controller='SomeController'>
+            <expander class='expander' expander-title='title'>
+                {{text}}
+            </expander>
+        </div>
+        <script src="ExpanderSimple.js"></script>
+</body>
+</html>

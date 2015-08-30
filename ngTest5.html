@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+	<style>
+	.menu-disabled-true{
+		color: gray;
+	}
+	</style>
+</head>
+<body>
+	<div ng-controller="cssController">
+		<ul>
+			<li class='menu-disabled-{{isDisabled}}' ng-click="stun()">stun</li>
+			<li>Fly</li>
+			<li>Start</li>
+		</ul>
+	</div>
+	<script>
+	var myApp = angular.module('nyApp',[])
+	myApp.controller('cssController',function($scope){
+		$scope.isDisabled = false;
+		$scope.stun = function(){
+			$scope.isDisabled = 'true';
+		}
+	})
+	</script>
+</body>
+</html>

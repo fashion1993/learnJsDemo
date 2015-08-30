@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <script src="js/angular.js"></script>
 </head>
 <body>
+your name: <input type="text" ng-model="yourname"/>       
+<!-- 文本输入指令ng-model绑定到yourname模型变量   双大括号标记将模型变量添加到问候语文本 双向数据绑定-->
+<!-- 模版(用html和css编写的文件,展现应用的视图,可添加属性标记作为angularjs编译器的指令,angularjs是完全可扩展的,通过angularjs可以在html中构建自己的html标记) 、应用程序逻辑和行为(应用程序逻辑和行为是用js定义的控制器)、 模型数据 -->
+<!-- ng-app标记angularjs脚本的作用域 
+{{}}绑定的表达式
+注入器将用于创建此应用程序的依赖注入,将会创建根作用域作为应用模型的范围
+从ng-app标记开始逐步处理dom指令和绑定
+ng-repeat angularjs迭代器 用第一个li标签作为模版
+ng-controller控制器初始化数据模型 控制器方法名和ngcontroller指令的值相匹配 允许建立模型和视图之间的数据绑定
+作用域是用来检测模型的改变和为表达式提供执行上下文的,他是分层组织起来的,并且层级关系是紧跟着dom结构的
+一个指令就是一种"由某个属性,元素名称,css类名出现而导致的行为,或者是dom的变化,指令能让你一种声明式的方法来扩展html表示能力"
+$route服务通常和ngview指令一起使用,ngview指令的角色是为当前路由把对应的视图模版载入到布局模版中
+-->
+ Hello {{yourname || 'world'}}!
 
+ number: <input type="text" ng-model="number"/>
+ <p>1+2={{number}}</p>
+ <script>
+ window.onload = function(){
+ 	function PhoneListCtrl($scope){
+ 		$scope.phone = [
+ 			{	"name":"nexus s",
+ 				"snippet":"fast just got faster"
+ 			},
+ 			{
+ 				"name":"iphone",
+ 				"snippet":"bigger than bigger"
+ 			},
+ 			{
+ 				"name":"xiaomi",
+ 				"snippet":"hahhahahha"
+ 			}
+ 		]
+ 	}
+ }
+ </script>
 </body>
 </html>

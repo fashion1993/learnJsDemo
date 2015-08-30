@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+	<style>
+	.error{
+		background-color: red;
+	}
+	</style>
+</head>
+<body ng-controller="myController">
+  <input type="button" value = {{title}} ng-class = '{error:isError}' ng-click="toggle()">
+</body>
+
+<script>
+	var myApp=angular.module('myApp',[])
+	myApp.directive('input',function(){
+	return{
+		scrope:{
+			isError:"= "
+		},
+		link:function(scope, element, attrs){
+			scope.isError = false;
+			scope.toggle = function(){
+				if(!scope.isError){
+					scope.isError = true;
+				}
+				else{
+					scope.isError = false;
+				}
+			}
+		}
+	}
+})
+	myApp.controller('myController',function($scope){
+		$scope.title = '点击这里';
+	})
+// myApp.controller('HeaderController',function($scope){
+// 	$scope.isError = false;
+// 	$scope.toggle = function(){
+// 		if(!$scope.isError){
+// 			$scope.isError = true;
+// 		}
+// 		else{1
+// 			$scope.isError = false;
+// 		}
+// }
+// }) 	
+</script>
+</html>

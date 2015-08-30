@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app=''timeExampleModule''>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+	<script>
+	// function GreetCtrl($scope) {  
+	// 	$scope.name = 'World'; 
+	// }
+	// function ListCtrl($scope) {  
+	// 	$scope.names = ['Igor', 'Misko', 'Vojta']; 
+	// }
+	// fucntion myCtrl($scope){
+	// 	$scope.action = function(){
+	// 		$scope.name = 'ok';
+	// 	}
+	// 	$scope.name = 'world';
+	// }
+	angular.module('timeExampleModule',[]).
+	factory('time',function($timeout){
+		var time = {};
+		(function tick(){
+			time.now = new Date().toString();
+			$timeout(tick,1000);
+		})();
+		return false;
+	})
+	function clockCtrl($scope,time){
+		$scope.tome = time;
+	}
+	function compile(tElement,tAttrs,transclude){...}
+	function cntl1($window,$scope){
+	}
+	var  app = angular.module('form-example',[])
+	</script>
+</head>
+<body>
+	<div ng-init = "list=['chrom','safsri','firefox','ie']">
+		<input ng-model="list" ng-list><br>
+		number formatting:{{1234567890 | number}} <br>
+		array filtering <input ng-model="predicate">
+		{{list | filter:predicate | json}}
+<!-- 		<pre>list = {{list}}</pre><br>
+		<ol>
+			<li ng-repeat = "item in list">
+				{{item}}
+			</li>
+		</ol> -->
+	</div>
+	<div ng-controller = "clockCtrl">
+		current time is:{{time.now}}
+	</div>
+	<button ng-click = "show=true">show</button>
+	<dialog title="hello {{username}}." visible = "show" on-cancle="show = false" on-ok = "show=false;dosomething()">
+	<div class="example2" ng-controller="cntl1">
+		name: <input type="text" ng-model="name">
+		<button ng-click="greet()">Greet</button>
+	</div>
+
+	<div contentEditable="true" ng-model="content" title="click to edit">
+		some
+	</div>
+	<pre>model={{content}}</pre>
+	<div>
+		{{'world' | greet}}
+	</div>
+
+
+	<style>
+	div[contentEditable]{
+		cursor: pointer;
+		background-color: #d0d0d0;
+	}
+	</style>
+
+
+	<script>
+	angular.module('form-example2',[]).directive('contentEditable',function(){
+		return{
+			require:'ngModel',
+			link:function(scope,elm,attrs,ctrl){
+				elm.bind('blur',function(){
+					scope.$apply(function(){
+						ctrl.$setViewValue(elm.html())
+					})
+				})
+				ctrl.$render = function(value){
+					elem.html(value);
+				}
+				ctrl.$setViewValue(elm.html());
+			}
+		}
+	})
+	</script>
+
+	<div ng-controller="EventController">
+		Root scope <tt>MyEvent</tt> count :{{count}}
+			<ul>
+				<li ng-repeat="i in [1]" ng-controller="Eventcontroller">
+					<button ng-click="$emit()"></button>
+				</li>
+			</ul>
+	</div>
+</body>
+</html>

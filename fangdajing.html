@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #Main {
+            width: 240px;
+            height: 350px;
+            border: 1px solid #fff;
+            background-image: url(http://www.pengyaou.com/DemoCenter/2015/6/2015691622118861/imgS.jpg);
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+        }
+        #child {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #fff;
+            background-image: url(http://www.pengyaou.com/DemoCenter/2015/6/2015691622118861/imgB.jpg);
+            background-position: 0px 0px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="Main">
+    <div id="child"></div>
+</div>
+<script src="js/jquery-1.9.1.js"></script>
+<script>
+    $(document).ready(function(e) {
+        var flag = false;
+        $("#Main").hover(function() {
+            flag = true;
+        });
+        $('#Main').mousemove(function(e) {
+            if (flag == false) return;
+            var x = e.clientX - $("#Main").offset().left-50;
+            var y = e.clientY - $("#Main").offset().top-50;
+
+            if (x >= 0 && x <= 140) {
+                $("#child").css("margin-left", x +"px");
+                $("#child").css("background-positionX", -x * 2+"px");
+
+            }
+            if (y >= 0 && y <= 250) {
+                $("#child").css("margin-top", y+"px");
+                $("#child").css("background-positionY", -y * 2+"px");
+            }
+        }, function() {});
+    });
+</script>
+</body>
+</html>
