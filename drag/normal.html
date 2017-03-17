@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>拖拽实例</title>
+  <style>
+    #target{
+      width: 50px;
+      height: 50px;
+      background: orange;
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+  <div id="target"></div>
+  <script>
+    var oElem = document.getElementById('target')
+    var startX = 0, startY = 0, sourceX = 0, sourceY = 0
+    oElem.addEventListener('mousedown', start, false)
+    function start(event){
+      startX = event.pageX
+      startY = event.pageY
+
+      var pos = getTargetPos(oElem)
+
+      sourceX = pos.x
+      sourceY = pos.y
+
+      document.addEventListener('mousemove', move, false)
+      document.addEventListener('mouseup', end, false)
+    }
+
+    function move(event){
+      var currentX = event.pageX, currentY = event.pageY
+      var distanceX = currentX - startX, distanceY = currentY - startY
+      setTargetPos(oElem, {
+        x: (sourceX + distanceX).toFixed(),
+        y: (sourceY + distanceY).toFixed()
+      })
+    }
+
+    function end(event){
+      document.removeEventListener('mousemove', move)
+      document.removeEventListener('mouseup', end)
+    }
+
+    function getStyle(elem, property){
+      return document.defaultView.getComputedStyle ? document.defaultView.getComputedStyle(elem, false)[property] : elem.currentStyle[property]
+    }
+
+    function getTransform(){
+      var transform = '', divStyle = document.createElement('div').style, transformArr = ['transform', 'webkitTransform', 'MozTransform', 'msTransform', 'OTransform'], i = 0, len = transformArr.length
+      for(; i < len; i++){
+        if(transformArr[i] in divStyle){
+          return transform = transformArr[i]
+        }
+      }
+      return transform
+    }
+
+    function getTargetPos(elem){
+      var pos = {x: 0, y:0}
+      var transform = getTransform()
+      if(transform){
+        var transformValue = getStyle(elem, transform)
+        if(transformValue == 'none'){
+          elem.style[transform] = 'translate(0,0)'
+          return pos
+        }else {
+          var temp = transformValue.match(/[0-9,\s\.]+/)[0].split(',')
+          return pos = {
+            x: parseInt(temp[4].trim()),
+            y: parseInt(temp[5].trim())
+          }
+        }
+      }else {
+        if(getStyle(elem, 'position') == 'static'){
+          elem.style.position = 'relative'
+          return pos
+        }else{
+          var x = parseInt(getStyle(elem, 'left') ? getStyle(elem, 'left') : 0)
+          var y = parseInt(getStyle(elem, 'top') ? getStyle(elem, 'top') : 0)
+          return pos = {
+            x: x,
+            y: y
+          }
+        }
+      }
+    }
+
+    function setTargetPos(elem, pos){
+      var transform = getTransform()
+      if(transform){
+        elem.style[transform] = 'translate(' + pos.x + 'px, ' + pos.y + 'px)'
+      }else{
+        elem.style.left = pos.x + 'px'
+        elem.style.top = pos.y + 'px'
+      }
+      return elem
+    }
+  </script>
+</body>
+</html>
