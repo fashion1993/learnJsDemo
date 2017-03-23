@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Document</title>
+</head>
+<body>
+  <ul id="target">
+    <li class="li">1</li>
+    <li class="li">2</li>
+    <li class="li">3</li>
+    <li class="li">4</li>
+    <li class="li">5</li>
+  </ul>
+  <script>
+  <!-- 1 -->
+    var z = 10;
+    function foo(){
+            console.log(z);
+    }
+    (function(funArg){
+            var z = 20;
+            funArg();
+    })(foo);
+  <!-- 2 -->
+    var data = [];
+    for(var k = 0; k < 3; k++){
+      data[k] = function(){
+          console.log(k);
+      };
+    }
+    data[0]();
+    data[1]();
+    data[2]();
+    <!-- 3 -->
+    function fun(n,o){
+      console.log(o)
+      return{
+          fun:function(m){
+              return fun(m,n);
+          }
+      };
+    }
+    var a = fun(0); a.fun(1); a.fun(2); a.fun(3);
+    var b = fun(0).fun(1).fun(2).fun(3);
+    var c = fun(0).fun(1); c.fun(2); c.fun(3);
+
+    <!-- 4 -->
+    var arr = [1,2,4,4,3,3,1,5,3]
+    var n = [], m = []
+    for(var i = 0; i < arr.length; i++){
+      if(n.indexOf(arr[i]) == -1)
+        n.push(arr[i])
+      else
+        console.log(arr[i])
+    }
+
+    <!-- 5 -->
+    var test = (function(a){
+      this.a = a
+      return function(b){
+        return this.a + b
+      }
+    }(function(a, b){
+      return a
+    }(1, 2)))
+
+    <!-- 6 -->
+    var li = document.getElementById("target").getElementsByTagName("li")
+    for(var i = 0; i < li.length; i++){
+      li[i].addEventListener("click", function(e){
+        console.log([].indexOf.call(this.parentNode.children, this))
+      })
+    }
+    // li.addEventListener("click", function(e){
+    //   console.log([].indexOf.call(this.parentNode.childNodes, this))
+    // })
+  </script>
+</body>
+</html>
